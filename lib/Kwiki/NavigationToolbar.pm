@@ -1,7 +1,7 @@
 package Kwiki::NavigationToolbar;
 use Kwiki::Plugin -Base;
 use mixin 'Kwiki::Installer';
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 const class_id => 'navigation_toolbar';
 const class_title => 'Kwiki Navigation Toolbar';
 const navigation_toolbar_template => 'navigation_toolbar_pane.html';
@@ -29,6 +29,32 @@ sub html {
 Kwiki::Navigation_Toolbar - Navigation Toolbar
 
 =head1 DESCRIPTION
+
+This plugin provids an extra toolbar other then L<Kwiki::Toolbar>,
+and you may manage it from web interface. Combine with
+privacy feature provided from Kwiki 0.37, you may make a
+simple content-manage system.
+
+The idea is to have a special page contain the content of menu;
+by default it's called C<KwikiNavigationToolbar>, it is not
+created automatically, you'll have to edit it after you install
+this plugin. This syntax inside is quite stright-forward:
+one menu-item each line, contain a KwikiPageName, and an optional
+label, seperated by a comma. For example:
+
+    HomePage
+    Research,My Research Topic
+    PerlStudy,Study Perl
+
+This create a menu with 3 items associated to "HomePage",
+"Research","PerlStudy" respectively. If labels are not given,
+page name are displayed.
+
+Currently,L<Kwiki::Theme::ColumnLayout> make use of this plugin;
+if you want to add it into your theme, place the following line
+into somewhere of C<kwiki_screen.html>:
+
+    [% hub.navigator_toolbar.html %]
 
 =head1 COPYRIGHT
 
